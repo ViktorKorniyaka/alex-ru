@@ -1,0 +1,95 @@
+import java.lang.reflect.*;
+import java.lang.annotation.*;
+import java.util.*;
+public  class  User {
+  
+	@Name (login = "Bot")
+	String username = "Pol";
+	
+	@Name //(factory = " breadFactory")
+	String organization;
+	
+	@Name //(day = " 10.10.10")
+	String berstDay;
+	
+
+	
+	
+public void  proces (Map< String, Object> map, Object a) {
+	Map<String, Object> map2 = new HashMap();
+	
+	
+	User u = new User ();
+	Class cl = u.getClass();
+	try {
+		Field []f = u.getClass().getDeclaredFields();
+		
+			Field field = cl.getDeclaredField("organization");
+			Name annotation = field.getAnnotation(Name.class); 
+			
+			Field fieldName = cl.getDeclaredField("username");
+			Name annotationN = fieldName.getAnnotation(Name.class); 
+			
+			Field fieldDay = cl.getDeclaredField("berstDay");
+			Name annotationD = fieldDay.getAnnotation(Name.class); 
+			
+			if(username == null) {
+				this.username = annotationN.login();
+			}
+			if(organization == null) {
+					
+					this.organization = annotation.factory();
+			}
+			if(berstDay == null) {
+				this.berstDay = annotationD.day();
+			}
+			
+			System.out.println("annotation - "+annotation);
+		
+		map2.put("username", username);
+		map2.put("berstDay", berstDay);
+		map2.put("organization", organization);
+		System.out.println("info - " +map2);
+	
+		
+	}catch (Exception e){
+		System.out.println("Error - "+e);
+	}
+	
+}
+	
+	
+	
+	public static void main (String args[]){
+		User u1 = new User();
+		/*	Class cl = u1.getClass();						
+		Constructor [] constrs = cl.getConstructors();
+		for (Constructor constr : constrs) {
+			Class [] paramTypes = constr.getParameterTypes();
+			for (Class paramType : paramTypes) {
+				System.out.println("paramType - "+paramType.getName());
+			}
+		}*/
+		Class cll = u1.getClass();
+		Method [] methods = cll.getMethods();
+		System.out.println("methods -"+methods);
+		for(Method method : methods) {
+			System.out.println("getName - "+method.getName());
+			System.out.println("getReturnType - "+method.getReturnType());
+			Class [] paramTypes = method.getParameterTypes();
+			System.out.println("paramTypes - "+paramTypes);
+			for(Class paramType : paramTypes) {
+				System.out.println("paramType - "+paramType);
+			}
+		}
+		
+			System.out.println("- - - - - - - - - - - - - - - - - - - -");
+		Map<String, Object> map = new HashMap();
+		u1.proces(map, u1);
+		
+  
+	    
+	    
+	}
+
+}
