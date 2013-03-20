@@ -1,0 +1,75 @@
+import java.util.*;
+
+
+public class Stok {
+  Thread1 t1;
+	int indexArray;
+	int array = 1000;
+	List<Integer> arrayList = new ArrayList();
+	List <Integer> stokList = new ArrayList ();
+	
+	public void start (){
+		 t1 = new Thread1();
+		 for(int i = 0; i<=40; i++){
+			t1.run(); 
+		 }
+		t1.countT1();
+	}
+	public void drowFailds (){
+		for(int i = 0; i <=array; i++){
+			arrayList.add(i);
+			//System.out.println("aL - " + arrayList.get(i));
+		}
+		
+	}
+
+	public int read (){
+		
+		if(arrayList == null){
+			indexArray = 0;
+		}
+		drowFailds();
+		int number = arrayList.get(indexArray);
+		System.out.println("number = "+number);
+		indexArray++;
+		
+		return number;
+	}
+	
+	public void stokAdd (int arg){
+		stokList.add(arg);
+		
+	}
+	public void drowStok (){
+		if(stokList.size()== 0){
+			System.out.println("stokList.size() = null ");
+		} else{
+			for(int i = 0; i <=stokList.size(); i++){
+			System.out.println("stokList = "+stokList.get(i));
+		}
+		}
+		
+		
+		/*Iterator<Integer> it = stok.iterator();
+		while(it.hasNext()){
+			System.out.println(it.next());
+		}*/
+	}
+	
+	public static void main (String[]args){
+		
+		Stok st = new Stok(); 
+		//st.drowFailds();
+		st.start(); 
+		System.out.println("arrayList +*-"+st.arrayList);
+		//st.read();
+		System.out.println("st.read(); - "+st.read());
+		System.out.println("indexArray - "+st.indexArray);
+		
+		
+
+	st.drowStok();
+		
+		
+	}
+}
