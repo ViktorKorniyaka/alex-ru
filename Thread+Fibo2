@@ -1,0 +1,62 @@
+import java.util.*;
+
+
+public class Thread1 extends Stok implements Runnable  {
+
+  int first;
+	int last;
+	int buf;
+	int counter;
+	List<Integer> fibo = new ArrayList ();
+	public void run (){
+		counter++;
+		
+		int r = read();
+		for(int i = 1; i<=45; i++){
+			if(i<=2){
+				first = i;
+				last = i-1;
+			}else{
+				buf = first;
+				first = first + last;
+				last = buf;
+			}	
+			 fibo.add(first);
+			 if(r == first){
+				stokAdd(r);
+				System.out.println("r = "+r+" first = "+first);
+			}
+			
+		}
+	}
+	public int printDrow (int arg){
+		 int f =1;
+		for(int i = 1; i<=45; i++){
+			if(i<=2){
+				first = i;
+				last = i-1;
+			}else{
+				buf = first;
+				first = first + last;
+				last = buf;
+			}	
+			fibo.add(first);
+			
+		}
+		for(int i = 1; i<=45; i++){
+		if(arg == fibo.get(i)){
+			 f = fibo.get(i);
+		};
+			}return f;
+	}
+	
+	public void countT1 (){
+		System.out.println("counterT1 " +counter);
+	}
+	
+	public void drowFibo (){
+		for(int i = 0; i <=fibo.size(); i++){
+		System.out.println("fibo - "+fibo.get(i));
+	}
+	}
+}
