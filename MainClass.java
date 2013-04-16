@@ -3,9 +3,11 @@ public class MainClass {
 	
 	public void goDraw (){
 		DrawText draw = new DrawText ();
-		
 		Thread t1 = new Thread(draw);
 		Thread t2 = new Thread(draw);
+		
+		t1.setName("my first thread");
+		t2.setName("my second thread");
 		t1.start();
 		t2.start();
 	}
